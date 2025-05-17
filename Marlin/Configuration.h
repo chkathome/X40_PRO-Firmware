@@ -795,11 +795,11 @@
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT || defined MACHINE_X40V1_BMG || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V1_LGX_HT
 #define X_MIN_POS -53 // was -47
-#define Y_MIN_POS -7  // was -2
+#define Y_MIN_POS -11 // was -7  // was -2
 #define Z_MIN_POS 0
 #define X_MAX_POS 347 // was 355
-#define Y_MAX_POS 307 // was 310
-#define Z_MAX_POS 405
+#define Y_MAX_POS 303 // was 307 // was 310
+#define Z_MAX_POS 325 // was 405
 #endif
 
 #if defined MACHINE_X40V2 || defined MACHINE_X40V2_HT || defined MACHINE_X40V2_BMG || defined MACHINE_X40V2_BMG_HT
