@@ -58,6 +58,7 @@
 #define MACHINE_X40V1_BMG_HT
 //#define MACHINE_X40V2_BMG
 //#define MACHINE_X40V2_BMG_HT
+//#define MACHINE_X40V1_LGX_HT
 
 #ifdef MACHINE_X40V1
 #define MACHINE_NAME "X40V1 PRO"
@@ -90,6 +91,10 @@
 
 #ifdef MACHINE_X40V2_BMG_HT
 #define MACHINE_NAME "X40V2 PRO BMG HT"
+#endif
+
+#ifdef MACHINE_X40V1_LGX_HT
+#define MACHINE_NAME "X40V1 PRO LGX HT"
 #endif
 
 /**
@@ -267,7 +272,7 @@
 // (Use MINTEMP for thermistor short/failure protection.)
 
 // High temperature range
-#if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT
+#if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT
 #define HEATER_0_MAXTEMP 310
 #define HEATER_1_MAXTEMP 310
 #define HEATER_2_MAXTEMP 310
@@ -312,7 +317,7 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // High temperature range
-  #if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT
+  #if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT
   #define DEFAULT_Kp 11.83
   #define DEFAULT_Ki 0.94
   #define DEFAULT_Kd 37.22
@@ -490,6 +495,7 @@
  * 
  * Weedo X40 Extruder => X94.34 Y94.20 Z404.24 E93.00
  * BMG Clone Extruder => X94.40 Y94.50 Z401.10 E332.00
+ * LGX Lite Extruder => X94.40 Y94.50 Z401.10 E562.00
  */
 #if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 94.55, 94.55, 401.10, 93.00}
@@ -507,7 +513,9 @@
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 94.55, 94.55, 401.10, 388.64}
 #endif
 
-
+#if defined MACHINE_X40V1_LGX_HT
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 94.55, 94.55, 401.10, 562.00}
+#endif
 
 
 /**
@@ -751,6 +759,9 @@
 #if defined MACHINE_X40V2_BMG || defined MACHINE_X40V2_BMG_HT
 #define INVERT_E1_DIR false  // with BMG Extruder false
 #endif
+#if defined MACHINE_X40V1_LGX_HT
+#define INVERT_E1_DIR false  // with LGX Extruder false
+#endif
 #define INVERT_E2_DIR true
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -782,7 +793,7 @@
 #define Y_BED_SIZE 300  // was 310
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT || defined MACHINE_X40V1_BMG ||  defined MACHINE_X40V1_BMG_HT
+#if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT || defined MACHINE_X40V1_BMG || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V1_LGX_HT
 #define X_MIN_POS -53 // was -47
 #define Y_MIN_POS -7  // was -2
 #define Z_MIN_POS 0
