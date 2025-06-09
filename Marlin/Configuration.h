@@ -59,6 +59,7 @@
 //#define MACHINE_X40V2_BMG
 //#define MACHINE_X40V2_BMG_HT
 //#define MACHINE_X40V1_LGX_HT
+//#define MACHINE_X40V1_LGX_REVO_HT
 
 #ifdef MACHINE_X40V1
 #define MACHINE_NAME "X40V1 PRO"
@@ -95,6 +96,10 @@
 
 #ifdef MACHINE_X40V1_LGX_HT
 #define MACHINE_NAME "X40V1 PRO LGX HT"
+#endif
+
+#ifdef MACHINE_X40V1_LGX_REVO_HT
+#define MACHINE_NAME "X40V1 PRO LGX REVO HT"
 #endif
 
 /**
@@ -226,8 +231,15 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
+#ifdef MACHINE_X40V1_LGX_REVO_HT
+#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_1 5
+#else
 #define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 1
+#endif
+//#define TEMP_SENSOR_0 1
+//#define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
@@ -272,7 +284,7 @@
 // (Use MINTEMP for thermistor short/failure protection.)
 
 // High temperature range
-#if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT
+#if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT || defined MACHINE_X40V1_LGX_REVO_HT
 #define HEATER_0_MAXTEMP 310
 #define HEATER_1_MAXTEMP 310
 #define HEATER_2_MAXTEMP 310
@@ -317,7 +329,7 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // High temperature range
-  #if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT
+  #if defined MACHINE_X40V1_HT || defined MACHINE_X40V2_HT || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V2_BMG_HT || defined MACHINE_X40V1_LGX_HT || defined MACHINE_X40V1_LGX_REVO_HT
   #define DEFAULT_Kp 11.83
   #define DEFAULT_Ki 0.94
   #define DEFAULT_Kd 37.22
@@ -513,7 +525,7 @@
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 94.55, 94.55, 401.10, 388.64}
 #endif
 
-#if defined MACHINE_X40V1_LGX_HT
+#if defined MACHINE_X40V1_LGX_HT || defined MACHINE_X40V1_LGX_REVO_HT
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 94.55, 94.55, 401.10, 562.00}
 #endif
 
@@ -645,7 +657,12 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
+#ifdef MACHINE_X40V1_LGX_REVO_HT
+#define NOZZLE_TO_PROBE_OFFSET { -35, -22, 0 }
+#else
 #define NOZZLE_TO_PROBE_OFFSET { -35, 0, 0 }
+#endif
+//#define NOZZLE_TO_PROBE_OFFSET { -35, 0, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -759,7 +776,7 @@
 #if defined MACHINE_X40V2_BMG || defined MACHINE_X40V2_BMG_HT
 #define INVERT_E1_DIR false  // with BMG Extruder false
 #endif
-#if defined MACHINE_X40V1_LGX_HT
+#if defined MACHINE_X40V1_LGX_HT || defined MACHINE_X40V1_LGX_REVO_HT
 #define INVERT_E1_DIR false  // with LGX Extruder false
 #endif
 #define INVERT_E2_DIR true
@@ -793,7 +810,7 @@
 #define Y_BED_SIZE 300  // was 310
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT || defined MACHINE_X40V1_BMG || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V1_LGX_HT
+#if defined MACHINE_X40V1 || defined MACHINE_X40V1_HT || defined MACHINE_X40V1_BMG || defined MACHINE_X40V1_BMG_HT || defined MACHINE_X40V1_LGX_HT || defined MACHINE_X40V1_LGX_REVO_HT
 #define X_MIN_POS -53 // was -47
 #define Y_MIN_POS -11 // was -7  // was -2
 #define Z_MIN_POS 0
